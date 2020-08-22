@@ -3,6 +3,9 @@
             [compojure.route :as route]
             [ring.middleware.json :refer [wrap-json-response wrap-json-body]]
             [ring.util.response :refer [response file-response]]
+            [ring.middleware.resource :refer [wrap-resource]]
+            [ring.middleware.content-type :refer [wrap-content-type]]
+            [ring.middleware.not-modified :refer [wrap-not-modified]]
             [hiccup.page :refer [html5]]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]))
 
@@ -19,6 +22,10 @@
 
 (defroutes app-routes
            (GET "/" req (root-render req))
+
+           (GET "/js/app.js" req
+             (file-response "app.js" {:root "resources/public/js"}))
+
            (context "/api" []
              (wrap-json-response
                (GET "/" request
@@ -31,12 +38,14 @@
                   "'y' is \"" y "\"\n"
                   "The request URI was \"" u "\"\n"
                   "The request method was \"" rm "\""))
-           (GET "/js/app.js" req
-             (file-response "app.js" {:root "js"}))
            (wrap-current-user-id
              (GET "/user/:user-id" [user-id message]        ; ?message=xd
                (str "The current user ID is: " user-id " " message)))
            (route/not-found "Not Found"))
 
 (def app
-  (wrap-defaults app-routes site-defaults))
+  (-> app-routes
+      (wrap-defaults site-defaults)
+      (wrap-resource "/resources/public")
+      wrap-content-type
+      wrap-not-modified))

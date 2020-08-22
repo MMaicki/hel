@@ -2,7 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e5427801-a099-463a-9032-da6cfe46c161" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/public/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/hel/index.cljs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hel.iml" beforeDir="false" afterPath="$PROJECT_DIR$/hel.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project.clj" beforeDir="false" afterPath="$PROJECT_DIR$/project.clj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hel/handler.clj" beforeDir="false" afterPath="$PROJECT_DIR$/src/hel/handler.clj" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -11,29 +17,40 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DarkyenusTimeTracker">
-    <option name="totalTimeSeconds" value="4923" />
+    <option name="totalTimeSeconds" value="9118" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Clojure Namespace" />
         <option value="JavaScript File" />
+        <option value="ClojureScript Namespace" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1gS0rYivhGHRT5AaaCqaWamAtMV" />
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="cursive.last.file.extension.C\:/WebDev/Clojure/hel/src" value="clj" />
+    <property name="cursive.last.file.extension.C\:/WebDev/Clojure/hel/src" value="cljs" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../ring-app" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.gutterIcons" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\WebDev\Clojure\hel\resources\public" />
+      <recent name="C:\WebDev\Clojure\hel\public" />
       <recent name="C:\WebDev\Clojure\hel" />
     </key>
   </component>
@@ -81,8 +98,23 @@
       <option name="presentableId" value="Default" />
       <updated>1598092885731</updated>
       <workItem from="1598092890559" duration="103000" />
-      <workItem from="1598093146929" duration="5775000" />
+      <workItem from="1598093146929" duration="10476000" />
     </task>
+    <task id="LOCAL-00001" summary="added .idea to gitignore">
+      <created>1598098950670</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1598098950671</updated>
+    </task>
+    <task id="LOCAL-00002" summary="added .idea to gitignore">
+      <created>1598099027967</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1598099027967</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -98,5 +130,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="added .idea to gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="added .idea to gitignore" />
   </component>
 </project>
