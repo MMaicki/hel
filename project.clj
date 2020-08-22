@@ -13,12 +13,13 @@
                  [ring/ring-json "0.5.0"]
                  [ring/ring-defaults "0.3.2"]]
   :cljsbuild {:builds [{:id           "app"
-                        :source-paths ["src/"]
+                        :source-paths ["src"]
                         :figwheel     true
-                        :compiler     {:main       hel.index
-                                       :asset-path "resources/public/js/out"
-                                       :output-to  "resources/public/js/app.js"
+                        :compiler     {:main       hel.cljs.core
+                                       :asset-path "js/out"
+                                       :output-to  "resources/public/js/compiled/app.js"
                                        :output-dir "resources/public/js/out"}}]}
+  :figwheel {:css-dirs ["resources/public/css"]}            ;; watch and update CSS}
   :plugins [[lein-ring "0.12.5"]
             [lein-figwheel "0.5.20"]]
   :ring {:handler hel.handler/app}

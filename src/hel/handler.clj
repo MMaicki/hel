@@ -4,9 +4,11 @@
             [ring.middleware.json :refer [wrap-json-response wrap-json-body]]
             [ring.util.response :refer [response file-response]]
             [ring.middleware.resource :refer [wrap-resource]]
+            [ring.middleware.file :refer [wrap-file]]
             [ring.middleware.content-type :refer [wrap-content-type]]
             [ring.middleware.not-modified :refer [wrap-not-modified]]
-            [hiccup.page :refer [html5]]
+            [hiccup.page :refer [html5 include-css]]
+            [hiccup.core :refer [html]]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]))
 
 (defn wrap-current-user-id [handler]
@@ -15,16 +17,22 @@
       (handler (assoc request :user-id user-id)))))
 
 (defn root-render [req]
-  (html5 [:body {}
-          [:div#app]
-          [:script {:type "text/javascript"
-                    :src  "/js/app.js"}]]))
+  (html [:html {}
+          [:head {}
+           [:link {:type "text/css", :href "css/style.css", :rel "stylesheet"}]]
+          [:body {}
+           [:div#app]
+           [:p {} (str req)]
+           [:script {:type "text/javascript"
+                     :src  "/resources/public/js/compiled/app.js"}]
+           [:script {:type "text/javascript"
+                     :src  "/resources/templates/test.js"}]]]))
 
 (defroutes app-routes
            (GET "/" req (root-render req))
 
-           (GET "/js/app.js" req
-             (file-response "app.js" {:root "resources/public/js"}))
+           (GET "/resources/templates/test.js" req
+             (file-response "test.js" {:root "resources/templates/"}))
 
            (context "/api" []
              (wrap-json-response
@@ -46,6 +54,6 @@
 (def app
   (-> app-routes
       (wrap-defaults site-defaults)
-      (wrap-resource "/resources/public")
+      (wrap-resource "public")
       wrap-content-type
       wrap-not-modified))
