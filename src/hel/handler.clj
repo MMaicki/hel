@@ -3,7 +3,12 @@
             [compojure.route :as route]
             [ring.middleware.json :refer [wrap-json-response wrap-json-body]]
             [ring.util.response :refer [response file-response]]
-            [hiccup.page :refer [html5]]
+            [ring.middleware.resource :refer [wrap-resource]]
+            [ring.middleware.file :refer [wrap-file]]
+            [ring.middleware.content-type :refer [wrap-content-type]]
+            [ring.middleware.not-modified :refer [wrap-not-modified]]
+            [hiccup.page :refer [html5 include-css]]
+            [hiccup.core :refer [html]]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]))
 
 (defn wrap-current-user-id [handler]
@@ -12,13 +17,24 @@
       (handler (assoc request :user-id user-id)))))
 
 (defn root-render [req]
-  (html5 [:body {}
-          [:div#app]
-          [:script {:type "text/javascript"
-                    :src  "/js/app.js"}]]))
+  (html [:html {}
+          [:head {}
+           [:link {:type "text/css", :href "css/style.css", :rel "stylesheet"}]]
+          [:body {}
+           [:div#app]
+           [:script {:type "text/javascript"
+                     :src  "/resources/public/js/compiled/app.js"}]
+           [:script {:type "text/javascript"
+                     :src  "/resources/templates/test.js"}]]]))
 
 (defroutes app-routes
            (GET "/" req (root-render req))
+
+           (GET "/resources/public/js/compiled/app.js" req
+             (file-response "app.js" {:root "resources/public/js/compiled/"}))
+           (GET "/resources/templates/test.js" req
+             (file-response "test.js" {:root "resources/templates/"}))
+
            (context "/api" []
              (wrap-json-response
                (GET "/" request
@@ -31,12 +47,14 @@
                   "'y' is \"" y "\"\n"
                   "The request URI was \"" u "\"\n"
                   "The request method was \"" rm "\""))
-           (GET "/js/app.js" req
-             (file-response "app.js" {:root "js"}))
            (wrap-current-user-id
              (GET "/user/:user-id" [user-id message]        ; ?message=xd
                (str "The current user ID is: " user-id " " message)))
            (route/not-found "Not Found"))
 
 (def app
-  (wrap-defaults app-routes site-defaults))
+  (-> app-routes
+      (wrap-defaults site-defaults)
+      (wrap-resource "public")
+      wrap-content-type
+      wrap-not-modified))
