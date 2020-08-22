@@ -22,7 +22,6 @@
            [:link {:type "text/css", :href "css/style.css", :rel "stylesheet"}]]
           [:body {}
            [:div#app]
-           [:p {} (str req)]
            [:script {:type "text/javascript"
                      :src  "/resources/public/js/compiled/app.js"}]
            [:script {:type "text/javascript"
@@ -31,6 +30,8 @@
 (defroutes app-routes
            (GET "/" req (root-render req))
 
+           (GET "/resources/public/js/compiled/app.js" req
+             (file-response "app.js" {:root "resources/public/js/compiled/"}))
            (GET "/resources/templates/test.js" req
              (file-response "test.js" {:root "resources/templates/"}))
 
