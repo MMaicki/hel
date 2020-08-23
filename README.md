@@ -1,6 +1,6 @@
 # hel
 
-FIXME
+Sample SpaceX API app
 
 ## Prerequisites
 
@@ -12,8 +12,8 @@ You will need [Leiningen][] 2.0.0 or above installed.
 
 To start a web server for the application, run:
 
-    lein run
+    lein figwheel
 
 ## License
 
-Copyright © 2020 FIXME
+Copyright © 2020 Marcin Maicki

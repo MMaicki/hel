@@ -18,14 +18,15 @@
                  [ring/ring-defaults "0.3.2"]]
   :cljsbuild {:builds [{:id           "app"
                         :source-paths ["src"]
-                        :figwheel     true
+                        :figwheel     {:on-jsload     "on-js-reload"
+                                       :websocket-url "ws://localhost:3449/figwheel-ws"}
                         :compiler     {:main       hel.cljs.core
                                        :asset-path "js/out"
                                        :output-to  "resources/public/js/compiled/app.js"
                                        :output-dir "resources/public/js/out"}}]}
   :figwheel {:css-dirs         ["resources/public/css"]
              :http-server-root "public"
-             :server-port      3000
+             :server-port      3449
              :ring-handler     hel.handler/app}
   :plugins [[lein-ring "0.12.5"]
             [lein-figwheel "0.5.20"]]
