@@ -13,8 +13,7 @@
                                 :keywords?       true})
         rf-launches       (rf/subscribe [:external/launches])]
     (fn []
-      (let [launches @rf-launches
-            _ (println launches)]
+      (let [launches @rf-launches]
         [layout
          [:header {:key :header}
           [:nav {}
