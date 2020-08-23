@@ -15,7 +15,9 @@
                  [cljs-ajax "0.8.1"]
                  [lein-figwheel "0.5.20"]
                  [ring/ring-json "0.5.0"]
-                 [ring/ring-defaults "0.3.2"]]
+                 [ring/ring-defaults "0.3.2"]
+                 [org.clojure/java.jdbc "0.6.1"]
+                 [org.postgresql/postgresql "9.4-1201-jdbc41"] ]
   :cljsbuild {:builds [{:id           "app"
                         :source-paths ["src"]
                         :figwheel     {:on-jsload     "on-js-reload"
