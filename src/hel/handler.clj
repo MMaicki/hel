@@ -30,6 +30,10 @@
 (defroutes app-routes
            (GET "/" req (root-render req))
            (GET "/about" req (root-render req))
+           (wrap-json-response
+             (GET "/hello" request
+               (response {:name    "Marcin"
+                          :surname "Maicki"})))
 
            (GET "/resources/public/js/compiled/app.js" req
              (file-response "app.js" {:root "resources/public/js/compiled/"}))

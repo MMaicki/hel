@@ -4,4 +4,4 @@
 
 (rf/reg-event-fx :config/init (fn [{:keys [db event] :as cofx} event-name]
                                 {:db {:init {:date      (.now js/Date)
-                                             :initiator event-name}}}))
+                                             :initiator (str event-name)}}}))

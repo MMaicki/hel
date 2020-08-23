@@ -2,6 +2,6 @@
   (:require [re-frame.core :as rf]))
 
 (rf/reg-event-fx :routes/home
-                 (fn [{:keys [db]} [_]] ; _ - event name
-                   {:db (assoc-in db [:routes :visited :home] true)}))
+                 (fn [{:keys [db]} [_ data]] ; _ - event name
+                   {:db (assoc-in db [:current-user] data)}))
 

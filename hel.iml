@@ -16,9 +16,10 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Leiningen: args4j:2.0.26" level="project" />
-    <orderEntry type="library" name="Leiningen: cheshire:5.9.0" level="project" />
+    <orderEntry type="library" name="Leiningen: cheshire:5.10.0" level="project" />
     <orderEntry type="library" name="Leiningen: clj-commons/secretary:1.2.4" level="project" />
     <orderEntry type="library" name="Leiningen: clj-stacktrace:0.2.8" level="project" />
+    <orderEntry type="library" name="Leiningen: cljs-ajax:0.8.1" level="project" />
     <orderEntry type="library" name="Leiningen: cljsjs/react-dom-server:16.13.0-0" level="project" />
     <orderEntry type="library" name="Leiningen: cljsjs/react-dom:16.13.0-0" level="project" />
     <orderEntry type="library" name="Leiningen: cljsjs/react:16.13.0-0" level="project" />
@@ -27,10 +28,12 @@
     <orderEntry type="library" name="Leiningen: com.andrewmcveigh/cljs-time:0.5.2" level="project" />
     <orderEntry type="library" name="Leiningen: com.cemerick/clojurescript.test:0.2.3-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Leiningen: com.cognitect/transit-clj:0.8.309" level="project" />
+    <orderEntry type="library" name="Leiningen: com.cognitect/transit-cljs:0.8.264" level="project" />
     <orderEntry type="library" name="Leiningen: com.cognitect/transit-java:0.8.332" level="project" />
-    <orderEntry type="library" name="Leiningen: com.fasterxml.jackson.core/jackson-core:2.9.9" level="project" />
-    <orderEntry type="library" name="Leiningen: com.fasterxml.jackson.dataformat/jackson-dataformat-cbor:2.9.9" level="project" />
-    <orderEntry type="library" name="Leiningen: com.fasterxml.jackson.dataformat/jackson-dataformat-smile:2.9.9" level="project" />
+    <orderEntry type="library" name="Leiningen: com.cognitect/transit-js:0.8.861" level="project" />
+    <orderEntry type="library" name="Leiningen: com.fasterxml.jackson.core/jackson-core:2.10.2" level="project" />
+    <orderEntry type="library" name="Leiningen: com.fasterxml.jackson.dataformat/jackson-dataformat-cbor:2.10.2" level="project" />
+    <orderEntry type="library" name="Leiningen: com.fasterxml.jackson.dataformat/jackson-dataformat-smile:2.10.2" level="project" />
     <orderEntry type="library" name="Leiningen: com.google.code.findbugs/jsr305:3.0.1" level="project" />
     <orderEntry type="library" name="Leiningen: com.google.code.gson/gson:2.7" level="project" />
     <orderEntry type="library" name="Leiningen: com.google.elemental2/elemental2-core:1.0.0-RC1" level="project" />
@@ -47,6 +50,7 @@
     <orderEntry type="library" name="Leiningen: commons-codec:1.10" level="project" />
     <orderEntry type="library" name="Leiningen: commons-fileupload:1.4" level="project" />
     <orderEntry type="library" name="Leiningen: commons-io:2.6" level="project" />
+    <orderEntry type="library" name="Leiningen: commons-logging:1.2" level="project" />
     <orderEntry type="library" name="Leiningen: compojure:1.6.1" level="project" />
     <orderEntry type="library" name="Leiningen: crypto-equality:1.0.0" level="project" />
     <orderEntry type="library" name="Leiningen: crypto-random:1.2.0" level="project" />
@@ -59,6 +63,10 @@
     <orderEntry type="library" name="Leiningen: net.cgrand/macrovich:0.2.1" level="project" />
     <orderEntry type="library" name="Leiningen: nrepl:0.6.0" level="project" />
     <orderEntry type="library" name="Leiningen: ns-tracker:0.4.0" level="project" />
+    <orderEntry type="library" name="Leiningen: org.apache.httpcomponents/httpasyncclient:4.1.4" level="project" />
+    <orderEntry type="library" name="Leiningen: org.apache.httpcomponents/httpclient:4.5.6" level="project" />
+    <orderEntry type="library" name="Leiningen: org.apache.httpcomponents/httpcore-nio:4.4.10" level="project" />
+    <orderEntry type="library" name="Leiningen: org.apache.httpcomponents/httpcore:4.4.13" level="project" />
     <orderEntry type="library" name="Leiningen: org.checkerframework/checker-qual:2.0.0" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/clojure:1.10.0" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/clojurescript:1.10.773" level="project" />
@@ -103,7 +111,7 @@
     <orderEntry type="library" name="Leiningen: ring/ring-ssl:0.3.0" level="project" />
     <orderEntry type="library" name="Leiningen: ring:1.8.1" level="project" />
     <orderEntry type="library" name="Leiningen: simple-lein-profile-merge:0.1.4" level="project" />
-    <orderEntry type="library" name="Leiningen: tigris:0.1.1" level="project" />
+    <orderEntry type="library" name="Leiningen: tigris:0.1.2" level="project" />
     <orderEntry type="library" name="Leiningen: venantius/accountant:0.2.5" level="project" />
   </component>
 </module>
