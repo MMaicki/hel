@@ -35,6 +35,8 @@
              (file-response "app.js" {:root "resources/public/js/compiled/"}))
            (GET "/resources/templates/test.js" req
              (file-response "test.js" {:root "resources/templates/"}))
+           (GET "/favicon.ico" req
+             (file-response "favicon.ico" {:root "resources/public/"}))
 
            (context "/api" []
              (wrap-json-response
