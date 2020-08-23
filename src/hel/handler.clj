@@ -29,6 +29,7 @@
 
 (defroutes app-routes
            (GET "/" req (root-render req))
+           (GET "/about" req (root-render req))
 
            (GET "/resources/public/js/compiled/app.js" req
              (file-response "app.js" {:root "resources/public/js/compiled/"}))
