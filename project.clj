@@ -23,7 +23,10 @@
                                        :asset-path "js/out"
                                        :output-to  "resources/public/js/compiled/app.js"
                                        :output-dir "resources/public/js/out"}}]}
-  :figwheel {:css-dirs ["resources/public/css"]}            ;; watch and update CSS}
+  :figwheel {:css-dirs         ["resources/public/css"]
+             :http-server-root "public"
+             :server-port      3000
+             :ring-handler     hel.handler/app}
   :plugins [[lein-ring "0.12.5"]
             [lein-figwheel "0.5.20"]]
   :ring {:handler hel.handler/app}

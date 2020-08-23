@@ -27,8 +27,10 @@
                 :key :container}
           [:h2 {} "Container Div"]
           [:div {}
-           (map (fn [launch] [:div {:key (:mission_name launch)}
-                              (:mission_name launch)]) launches)]]
+           (if launches
+             (map (fn [launch] [:div {:key (:mission_name launch)}
+                                (:mission_name launch)]) launches)
+             "LOADING")]]
 
          [:footer {:key :footer}
           [:div {} "Footer"]]]))))

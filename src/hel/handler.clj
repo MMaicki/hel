@@ -17,22 +17,22 @@
       (handler (assoc request :user-id user-id)))))
 
 (defn root-render [req]
-  (html [:html {}
-          [:head {}
-           [:meta {:charset "utf-8"}]
-           ; [:meta {:http-equiv "Content-Security-Policy" :content "default-src 'self'"}]
-           [:meta {:name "application-name" :content "HEL APP"}]
-           [:meta {:name "theme-color" :content "#dedede"}]
-           [:meta {:name "robots" :content "index,follow"}]
-           [:title "HEL app"]
-           [:meta {:name :viewport :content "width=device-width, initial-scale=1"}]
-           [:link {:type "text/css", :href "css/style.css", :rel "stylesheet"}]]
-          [:body {}
-           [:div#app]
-           [:script {:type "text/javascript"
-                     :src  "/resources/public/js/compiled/app.js"}]
-           [:script {:type "text/javascript"
-                     :src  "/resources/templates/test.js"}]]]))
+  (html5
+    [:head {}
+     [:meta {:charset "utf-8"}]
+     ; [:meta {:http-equiv "Content-Security-Policy" :content "default-src 'self'"}]
+     [:meta {:name "application-name" :content "HEL APP"}]
+     [:meta {:name "theme-color" :content "#dedede"}]
+     [:meta {:name "robots" :content "index,follow"}]
+     [:title "HEL app"]
+     [:meta {:name :viewport :content "width=device-width, initial-scale=1"}]
+     [:link {:type "text/css", :href "css/style.css", :rel "stylesheet"}]]
+    [:body {}
+     [:div#app]
+     [:script {:type "text/javascript"
+               :src  "/resources/public/js/compiled/app.js"}]
+     [:script {:type "text/javascript"
+               :src  "/resources/templates/test.js"}]]))
 
 (defroutes app-routes
            (GET "/" req (root-render req))
