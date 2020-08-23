@@ -3,33 +3,12 @@
             [reagent.dom :as rdom]
             [clojure.string :as str]
             [hel.cljs.routes.routes]
+            [hel.cljs.re-frame.root]
             [re-frame.core :as rf]
             [re-frisk.core :as re-frisk]
             [accountant.core :as accountant]
-            [hel.cljs.client.layout :refer [layout]]
+            [hel.cljs.app :refer [app]]
             [secretary.core :as secretary]))
-
-(defn app []
-  (fn []
-    [layout
-     [:header {:key :header}
-      [:nav {}
-       [:div {}
-        [:a {:href "/about"}
-         "About"]
-        [:a {:href "/"}
-         "Home"]]]]
-
-     [:div {:id :container
-            :key :container}
-      [:h2 {} "Container Div"]]
-
-     [:footer {:key :footer}
-      [:div {} "Footer"]]]))
-
-(rf/reg-event-fx :config/init (fn [{:keys [db event] :as cofx} event-name]
-                                {:db {:init {:date      (.now js/Date)
-                                             :initiator event-name}}}))
 
 (defn ^:export run []
   (println "APP INIT!")
