@@ -12,13 +12,6 @@
                 :error-handler   (fn [req]
                                    (println "Error!" (str req)))
                 :response-format :json
-                :keywords?       true})
-          (GET "https://api.spacexdata.com/v3/launches"
-               {:handler         (fn [req]
-                                   (rf/dispatch [:routes/external-api req]))
-                :error-handler   (fn [req]
-                                   (println "Error getting SpaceX API" (str req)))
-                :response-format :json
                 :keywords?       true}))
 
 (defroute "/about" []
