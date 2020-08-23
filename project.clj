@@ -9,6 +9,7 @@
                  [compojure "1.6.1"]
                  [hiccup "1.0.5"]
                  [reagent "1.0.0-alpha2"]
+                 [re-frame "1.0.0"]
                  [clj-commons/secretary "1.2.4"]
                  [venantius/accountant "0.2.5"]
                  [lein-figwheel "0.5.20"]
@@ -27,4 +28,5 @@
   :ring {:handler hel.handler/app}
   :profiles
   {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]
-                        [ring/ring-mock "0.3.2"]]}})
+                        [ring/ring-mock "0.3.2"]
+                        [re-frisk "1.3.4"]]}})

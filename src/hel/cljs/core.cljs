@@ -3,6 +3,8 @@
             [reagent.dom :as rdom]
             [clojure.string :as str]
             [hel.cljs.routes.routes]
+            [re-frame.core :as rf]
+            [re-frisk.core :as re-frisk]
             [accountant.core :as accountant]
             [hel.cljs.client.layout :refer [layout]]
             [secretary.core :as secretary]))
@@ -25,8 +27,14 @@
      [:footer {:key :footer}
       [:div {} "Footer"]]]))
 
+(rf/reg-event-fx :config/init (fn [{:keys [db event] :as cofx} event-name]
+                                {:db {:init {:date      (.now js/Date)
+                                             :initiator event-name}}}))
+
 (defn ^:export run []
   (println "APP INIT!")
+  (re-frisk/enable)
+  (rf/dispatch-sync [:config/init])
   (accountant/configure-navigation!
     {:nav-handler       (fn [path]
                           (secretary/dispatch! path))
