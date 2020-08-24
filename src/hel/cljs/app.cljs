@@ -1,7 +1,8 @@
 (ns hel.cljs.app
   (:require [hel.cljs.client.layout :refer [layout]]
             [ajax.core :refer [GET POST]]
-            [re-frame.core :as rf]))
+            [re-frame.core :as rf]
+            [hel.cljs.client.components.header :refer [header]]))
 
 (defn app []
   (let [external-launches (GET "https://api.spacexdata.com/v3/launches"
@@ -15,14 +16,7 @@
     (fn []
       (let [launches @rf-launches]
         [layout
-         [:header {:key :header}
-          [:nav {}
-           [:div {}
-            [:a {:href "/about"}
-             "About"]
-            [:a {:href "/"}
-             "Home"]]]]
-
+         [header {:key :header}]
          [:div {:id  :container
                 :key :container}
           [:h2 {} "Container Div"]

@@ -13,6 +13,7 @@
                  [clj-commons/secretary "1.2.4"]
                  [venantius/accountant "0.2.5"]
                  [cljs-ajax "0.8.1"]
+                 [cljsjs/material-ui "4.10.2-0"]
                  [lein-figwheel "0.5.20"]
                  [ring/ring-json "0.5.0"]
                  [ring/ring-defaults "0.3.2"]
