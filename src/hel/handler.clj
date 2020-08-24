@@ -9,7 +9,8 @@
             [ring.middleware.not-modified :refer [wrap-not-modified]]
             [hiccup.page :refer [html5 include-css]]
             [hiccup.core :refer [html]]
-            [ring.middleware.defaults :refer [wrap-defaults site-defaults]]))
+            [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
+            [clojure.java.jdbc :as jdbc]))
 
 (defn wrap-current-user-id [handler]
   (fn [request]
@@ -54,8 +55,8 @@
                (GET "/" request
                  (response {:name "Marcin"
                             :request (str request)})))
-             (GET "/users" request
-               (html5 [:h1 {} "hiccup"])))
+             #_(GET "/users" request
+               (jdbc/query #'system "select * from testing limit 1")))
            (GET "/foobar" [x y :as {u :uri rm :request-method}] ; http://localhost:3000/foobar?x=foo&y=bar&z=baz&w=qux
              (str "'x' is \"" x "\"\n"
                   "'y' is \"" y "\"\n"
