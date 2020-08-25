@@ -33,7 +33,7 @@
                                {:port  3000
                                 :join? false})))
   (stop [this]
-    (close-datasource @datasource)
+    (assoc this :http-server nil)
     this))
 
 (defn web-server
@@ -41,7 +41,7 @@
   creates its handler dynamically."
   []
   (component/using (map->WebServer {})
-                   [:database]))
+                   [:database])) ; webserver gets his db dependency declared here
 
 (defrecord Database [host port connection]
   component/Lifecycle
@@ -66,7 +66,7 @@
       :database (postgree-db "localhost" 5432)
       :app (component/system-using
              (web-server)
-             []))))
+             [])))) ; this is place for whole app dependency
 
 (def system (example-system {:host "localhost" :port 5432}))
 

@@ -9,6 +9,7 @@
             [ring.middleware.not-modified :refer [wrap-not-modified]]
             [hiccup.page :refer [html5 include-css]]
             [hiccup.core :refer [html]]
+            [hel.db.db :refer [pg-db]]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
             [clojure.java.jdbc :as jdbc]))
 
@@ -55,8 +56,13 @@
                (GET "/" request
                  (response {:name "Marcin"
                             :request (str request)})))
-             #_(GET "/users" request
-               (jdbc/query #'system "select * from testing limit 1")))
+             (wrap-json-response
+               (GET "/users" request
+                 (jdbc/insert-multi! pg-db :testing
+                                  [{:id 1}
+                                   {:id 2}])
+                 (response {:id :test
+                            :data (jdbc/query pg-db "select * from testing;")}))))
            (GET "/foobar" [x y :as {u :uri rm :request-method}] ; http://localhost:3000/foobar?x=foo&y=bar&z=baz&w=qux
              (str "'x' is \"" x "\"\n"
                   "'y' is \"" y "\"\n"
