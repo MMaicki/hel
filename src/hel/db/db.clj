@@ -1,13 +1,13 @@
 (ns hel.db.db
-  (:require [clojure.java.jdbc :as j]))
+  (:require [clojure.java.jdbc :as jdbc]))
 
 ;; there are many ways to write a db-spec but the easiest way is to
 ;; use :dbtype and then provide the :dbname and any of :user, :password,
 ;; :host, :port, and other options as needed:
-(def pg-db {:dbtype "postgresql"
-            :dbname "hel"
-            :host "localhost"
-            :user "postgres"
+(def pg-db {:dbtype   "postgresql"
+            :dbname   "hel"
+            :host     "localhost"
+            :user     "postgres"
             :password "nxCXwqKhfdw4o2"})
 
 ;; if the dbtype is not known to clojure.java.jdbc, or you want to override the
@@ -19,18 +19,16 @@
 (def pg-uri
   {:connection-uri (str "postgresql://myuser:secret@mydb.server.com:5432/mypgdatabase"
                         "?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory")})
+
 ;; invoke this function with: lein run -m hel.db.db
 (defn -main []
-  (j/db-do-commands "postgresql://localhost:5432/hel?user=postgres&password=nxCXwqKhfdw4o2"
-                    (j/create-table-ddl :testing [[:id "BIGINT" "UNIQUE" "NOT NULL"]
-                                                  [:applied "TIMESTAMP" "" ""]
-                                                  [:description "VARCHAR(1024)" "" ""]]))
-  (j/insert-multi! pg-db :testing
-                   [{:id 1}
-                    {:id 2}])
+  #_(jdbc/drop-table-ddl :testing)
+  (jdbc/db-do-commands "postgresql://localhost:5432/hel?user=postgres&password=nxCXwqKhfdw4o2"
+                       (jdbc/create-table-ddl :testing [[:id "BIGINT" "UNIQUE" "NOT NULL"]
+                                                        [:applied "TIMESTAMP" "" ""]
+                                                        [:description "VARCHAR(1024)" "" ""]]))
+  (jdbc/insert-multi! pg-db :testing
+                      [{:id 1}
+                       {:id 2}])
   ;; ({:generated_key 1} {:generated_key 2})
-
-  #_(j/query pg-db
-             ["select * from fruit where appearance = ?" "rosy"]
-             {:row-fn :cost}))
-;; (24)
+  )

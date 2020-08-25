@@ -28,6 +28,7 @@
 (defrecord WebServer [http-server app-component]
   component/Lifecycle
   (start [this]
+    (println "WEBSERVER:" this)
     (assoc this :http-server (run-jetty
                                (wrap-reload #'app)
                                {:port  3000
@@ -49,6 +50,7 @@
   (start [component]
     (println ";; Starting database")
     (let [conn (map->Database datasource-options)]
+      (println "CONNECTION" conn)
       (assoc component :connection conn)))
 
   (stop [component]
