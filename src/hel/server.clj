@@ -22,17 +22,17 @@
                          :port-number        5432
                          :register-mbeans    false})
 
+(def run-server
+  (run-jetty (wrap-reload #'app)
+             {:port  3000 :join? false}))
+
 (defonce datasource
          (delay (make-datasource datasource-options)))
 
-(defrecord WebServer [http-server app-component]
+(defrecord WebServer [http-server]
   component/Lifecycle
   (start [this]
-    (println "WEBSERVER:" this)
-    (assoc this :http-server (run-jetty
-                               (wrap-reload #'app)
-                               {:port  3000
-                                :join? false})))
+    (assoc this :http-server http-server))
   (stop [this]
     (assoc this :http-server nil)
     this))
@@ -40,16 +40,15 @@
 (defn web-server
   "Returns a new instance of the web server component which
   creates its handler dynamically."
-  []
-  (component/using (map->WebServer {})
-                   [:database])) ; webserver gets his db dependency declared here
+  [http-server]
+  (map->WebServer {:http-server http-server}))
 
 (defrecord Database [host port connection]
   component/Lifecycle
 
   (start [component]
-    (println ";; Starting database")
-    (let [conn (map->Database datasource-options)]
+    (println ";; Starting database" host port)
+    (let [conn @datasource]
       (println "CONNECTION" conn)
       (assoc component :connection conn)))
 
@@ -61,16 +60,16 @@
 (defn postgree-db [host port]
   (map->Database {:host host :port port}))
 
-(defn example-system [config-options]
-  (let [{:keys [host port]} config-options]
+(defn web-server-system [config-options]
+  (let [{:keys [host port http-server]} config-options]
     (component/system-map
       :config-options config-options
-      :database (postgree-db "localhost" 5432)
+      :database (postgree-db host port)
       :app (component/system-using
-             (web-server)
+             (web-server http-server)
              [])))) ; this is place for whole app dependency
 
-(def system (example-system {:host "localhost" :port 5432}))
+(def system (web-server-system {:host "localhost" :port 5432 :http-server run-server}))
 
 (defn -main []
   (alter-var-root #'system component/start))
