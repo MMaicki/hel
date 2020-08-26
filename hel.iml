@@ -69,6 +69,7 @@
     <orderEntry type="library" name="Leiningen: javax.servlet/servlet-api:2.5" level="project" />
     <orderEntry type="library" name="Leiningen: lein-figwheel:0.5.20" level="project" />
     <orderEntry type="library" name="Leiningen: medley:1.0.0" level="project" />
+    <orderEntry type="library" name="Leiningen: migratus:1.2.8" level="project" />
     <orderEntry type="library" name="Leiningen: net.cgrand/macrovich:0.2.1" level="project" />
     <orderEntry type="library" name="Leiningen: nrepl:0.6.0" level="project" />
     <orderEntry type="library" name="Leiningen: ns-tracker:0.4.0" level="project" />
@@ -104,7 +105,7 @@
     <orderEntry type="library" name="Leiningen: org.javassist/javassist:3.18.1-GA" level="project" />
     <orderEntry type="library" name="Leiningen: org.msgpack/msgpack:0.6.12" level="project" />
     <orderEntry type="library" name="Leiningen: org.ow2.asm/asm:5.2" level="project" />
-    <orderEntry type="library" name="Leiningen: org.postgresql/postgresql:9.4-1201-jdbc41" level="project" />
+    <orderEntry type="library" name="Leiningen: org.postgresql/postgresql:42.2.14" level="project" />
     <orderEntry type="library" name="Leiningen: org.slf4j/jcl-over-slf4j:1.7.22" level="project" />
     <orderEntry type="library" name="Leiningen: org.slf4j/slf4j-api:1.7.22" level="project" />
     <orderEntry type="library" name="Leiningen: org.tobereplaced/lettercase:1.0.0" level="project" />
