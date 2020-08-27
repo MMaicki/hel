@@ -42,6 +42,8 @@
             [migratus-lein "0.7.3"]
             [lein-figwheel "0.5.20"]]
   :ring {:handler hel.handler/app}
-  :profiles {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]
-                                  [ring/ring-mock "0.3.2"]
-                                  [re-frisk "1.3.4"]]}})
+  :profiles {:dev     {:dependencies [[javax.servlet/servlet-api "2.5"]
+                                      [ring/ring-mock "0.3.2"]
+                                      [re-frisk "1.3.4"]]}
+             :uberjar {:aot  :all
+                       :main hel.server}})

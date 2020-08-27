@@ -58,11 +58,11 @@
                             :request (str request)})))
              (wrap-json-response
                (GET "/users" request
-                 (jdbc/insert-multi! pg-db :testing
-                                  [{:id 1}
-                                   {:id 2}])
+                 (jdbc/insert-multi! pg-db :users
+                                  [{:id 1 :first_name "Marcin" :last_name "Maicki" :email "test@test.com" :admin true :is_active false :pass "1234567"}
+                                   {:id 2 :first_name "xD" :last_name "xD" :email "test@test2.com" :admin false :is_active true :pass "1234567"}])
                  (response {:id :test
-                            :data (jdbc/query pg-db "select * from testing;")}))))
+                            :data (jdbc/query pg-db "select * from users;")}))))
            (GET "/foobar" [x y :as {u :uri rm :request-method}] ; http://localhost:3000/foobar?x=foo&y=bar&z=baz&w=qux
              (str "'x' is \"" x "\"\n"
                   "'y' is \"" y "\"\n"

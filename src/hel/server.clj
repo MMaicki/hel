@@ -3,7 +3,8 @@
             [hikari-cp.core :refer :all]
             [ring.middleware.reload :refer [wrap-reload]]
             [hel.handler :refer [app]]
-            [com.stuartsierra.component :as component]))
+            [com.stuartsierra.component :as component])
+  (:gen-class))
 
 (def datasource-options {:auto-commit        true
                          :read-only          false
@@ -22,17 +23,13 @@
                          :port-number        5432
                          :register-mbeans    false})
 
-(def run-server
-  (run-jetty (wrap-reload #'app)
-             {:port  3000 :join? false}))
-
 (defonce datasource
          (delay (make-datasource datasource-options)))
 
 (defrecord WebServer [http-server]
   component/Lifecycle
   (start [this]
-    (assoc this :http-server http-server))
+    (assoc this :http-server (http-server)))
   (stop [this]
     (assoc this :http-server nil)
     this))
@@ -69,7 +66,23 @@
              (web-server http-server)
              [])))) ; this is place for whole app dependency
 
-(def system (web-server-system {:host "localhost" :port 5432 :http-server run-server}))
+; PRODUCTION SERVER
+; #(run-jetty app {:port 3000})
+
+; DEVELOPEMENT SERVER FUNCTION
+; #(run-jetty (wrap-reload #'app)
+;           {:port  3000 :join? false})
+
+(def system (web-server-system {:host        "localhost"
+                                :port        5432
+                                :http-server #(run-jetty (wrap-reload #'app)
+                                                         {:port  3000
+                                                          :join? false})}))
 
 (defn -main []
-  (alter-var-root #'system component/start))
+  ; PRODUCTION BUILD
+  ; (component/start system)
+
+  ; DEVELOPEMENT BUILD
+  (alter-var-root #'system component/start)
+  )
