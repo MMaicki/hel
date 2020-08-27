@@ -28,6 +28,7 @@
              :db            "postgresql://localhost:5432/hel?user=postgres&password=nxCXwqKhfdw4o2"}
   :cljsbuild {:builds [{:id           "app"
                         :source-paths ["src"]
+                        :jar          true
                         :figwheel     {:on-jsload     "on-js-reload"
                                        :websocket-url "ws://localhost:3449/figwheel-ws"}
                         :compiler     {:main       hel.cljs.core
@@ -38,9 +39,11 @@
              :http-server-root "public"
              :server-port      3449
              :ring-handler     hel.handler/app}
+  :prep-tasks ["compile" ["cljsbuild" "once"]]
   :plugins [[lein-ring "0.12.5"]
             [migratus-lein "0.7.3"]
-            [lein-figwheel "0.5.20"]]
+            [lein-figwheel "0.5.20"]
+            [lein-cljsbuild "1.1.8"] ]
   :ring {:handler hel.handler/app}
   :profiles {:dev     {:dependencies [[javax.servlet/servlet-api "2.5"]
                                       [ring/ring-mock "0.3.2"]

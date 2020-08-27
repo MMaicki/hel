@@ -32,7 +32,7 @@
     [:body {}
      [:div#app]
      [:script {:type "text/javascript"
-               :src  "/resources/public/js/compiled/app.js"}]
+               :src  "/js/compiled/app.js"}]
      [:script {:type "text/javascript"
                :src  "/resources/templates/test.js"}]]))
 
@@ -44,10 +44,10 @@
                (response {:name    "Marcin"
                           :surname "Maicki"})))
 
-           (GET "/resources/public/js/compiled/app.js" req
-             (file-response "app.js" {:root "resources/public/js/compiled/"}))
-           (GET "/resources/templates/test.js" req
-             (file-response "test.js" {:root "resources/templates/"}))
+           #_(GET "/public/js/compiled/app.js" req
+             (file-response "app.js" {:root "/public/js/compiled/"}))
+           (GET "/templates/test.js" req
+             (file-response "test.js" {:root "/templates/"}))
            (GET "/favicon.ico" req
              (file-response "favicon.ico" {:root "resources/public/"}))
 

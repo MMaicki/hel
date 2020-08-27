@@ -9,9 +9,13 @@
       <sourceFolder url="file://C:\WebDev\Clojure\hel\dev-resources" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/resources" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/public/js/compiled" />
+      <excludeFolder url="file://$MODULE_DIR$/public/js/out" />
       <excludeFolder url="file://$MODULE_DIR$/resources/public/js/compiled" />
       <excludeFolder url="file://$MODULE_DIR$/resources/public/js/out" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
+      <excludeFolder url="file://C:\WebDev\Clojure\hel\resources\public\js\compiled" />
+      <excludeFolder url="file://C:\WebDev\Clojure\hel\resources\public\js\out" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
