@@ -34,7 +34,7 @@
      [:script {:type "text/javascript"
                :src  "/js/compiled/app.js"}]
      [:script {:type "text/javascript"
-               :src  "/resources/templates/test.js"}]]))
+               :src  "/templates/test.js"}]]))
 
 (defroutes app-routes
            (GET "/" req (root-render req))
@@ -46,16 +46,16 @@
 
            #_(GET "/public/js/compiled/app.js" req
              (file-response "app.js" {:root "/public/js/compiled/"}))
-           (GET "/templates/test.js" req
+           #_(GET "/templates/test.js" req
              (file-response "test.js" {:root "/templates/"}))
-           (GET "/favicon.ico" req
+           #_(GET "/favicon.ico" req
              (file-response "favicon.ico" {:root "resources/public/"}))
 
            (context "/api" []
              (wrap-json-response
                (GET "/" request
-                 (response {:name "Marcin"
-                            :request (str request)})))
+                 (response {:id :test
+                            :data (jdbc/query pg-db "select * from users;")})))
              (wrap-json-response
                (GET "/users" request
                  (jdbc/insert-multi! pg-db :users

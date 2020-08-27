@@ -31,10 +31,11 @@
                         :jar          true
                         :figwheel     {:on-jsload     "on-js-reload"
                                        :websocket-url "ws://localhost:3449/figwheel-ws"}
-                        :compiler     {:main       hel.cljs.core
-                                       :asset-path "js/out"
-                                       :output-to  "resources/public/js/compiled/app.js"
-                                       :output-dir "resources/public/js/out"}}]}
+                        :compiler     {:main          hel.cljs.core
+                                       :asset-path    "js/out"
+                                       :optimizations :none ; advanced for production - siginificantly elongates JS compilation ~x3, but God... It's fast
+                                       :output-to     "resources/public/js/compiled/app.js"
+                                       :output-dir    "resources/public/js/out"}}]}
   :figwheel {:css-dirs         ["resources/public/css"]
              :http-server-root "public"
              :server-port      3449
