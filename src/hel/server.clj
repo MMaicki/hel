@@ -76,7 +76,7 @@
 (def system (web-server-system {:host        "localhost"
                                 :port        5432
                                 :http-server #(run-jetty (wrap-reload #'app)
-                                                         {:port  3000
+                                                         {:port  3449
                                                           :join? false})}))
 
 (defn -main []
