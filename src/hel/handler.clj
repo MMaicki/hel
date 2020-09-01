@@ -10,7 +10,7 @@
             [hiccup.page :refer [html5 include-css]]
             [hiccup.core :refer [html]]
             [hel.db.db :refer [pg-db]]
-            [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
+            [ring.middleware.defaults :refer [wrap-defaults api-defaults]]
             [clojure.java.jdbc :as jdbc]))
 
 (defn wrap-current-user-id [handler]
@@ -36,6 +36,20 @@
      [:script {:type "text/javascript"
                :src  "/templates/test.js"}]]))
 
+(defn login-authenticate
+  "Check request username and password against authdata
+  username and passwords.
+  On successful authentication, set appropriate user
+  into the session and redirect to the value of
+  (:next (:query-params request)). On failed
+  authentication, renders the login page."
+  [req]
+  (let [username (:username req)
+        password (:password req)]
+    (println "SERVER" (:body req))
+    (response {:message "LOGIN"
+               :req (str req)})))
+
 (defroutes app-routes
            (GET "/" req (root-render req))
            (GET "/about" req (root-render req))
@@ -43,6 +57,9 @@
              (GET "/hello" request
                (response {:name    "Marcin"
                           :surname "Maicki"})))
+
+           (wrap-json-body
+             (POST "/login" req (login-authenticate req)))
 
            #_(GET "/public/js/compiled/app.js" req
              (file-response "app.js" {:root "/public/js/compiled/"}))
@@ -75,7 +92,9 @@
 
 (def app
   (-> app-routes
-      (wrap-defaults site-defaults)
+      (wrap-defaults api-defaults)
       (wrap-resource "public")
       wrap-content-type
+      wrap-json-response
+      (wrap-json-body {:keywords? true :bigdecimals? true})
       wrap-not-modified))

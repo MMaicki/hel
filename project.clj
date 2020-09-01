@@ -20,6 +20,7 @@
                  [cljsjs/material-ui "4.10.2-0"]
                  [lein-figwheel "0.5.20"]
                  [ring/ring-json "0.5.0"]
+                 [buddy/buddy-auth "2.2.0"]
                  [ring/ring-defaults "0.3.2"]
                  [org.clojure/java.jdbc "0.6.1"]
                  [org.postgresql/postgresql "42.2.14"]]
