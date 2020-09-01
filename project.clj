@@ -29,8 +29,7 @@
   :cljsbuild {:builds [{:id           "app"
                         :source-paths ["src"]
                         :jar          true
-                        :figwheel     {:on-jsload     "on-js-reload"
-                                       :websocket-url "ws://localhost:3449/figwheel-ws"}
+                        :figwheel     true
                         :compiler     {:main          hel.cljs.core
                                        :asset-path    "js/out"
                                        :optimizations :none ; advanced for production - siginificantly elongates JS compilation ~x3, but God... It's fast

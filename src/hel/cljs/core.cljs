@@ -8,7 +8,11 @@
            ; [re-frisk.core :as re-frisk] ; re frisk is dev dependency it's not getting compiled in production
             [accountant.core :as accountant]
             [hel.cljs.app :refer [app]]
+            [figwheel.client :as figwheel :include-macros true]
             [secretary.core :as secretary]))
+
+(defn fighweel-reload []
+  (println "fighweel reload"))
 
 (defn ^:export run []
   (println "APP INIT!")
@@ -24,4 +28,7 @@
 
 ;; START FRONT-END APPLICATION
 (enable-console-print!)
+(figwheel/watch-and-reload ;; only for dev env
+  :websocket-url "ws://localhost:3449/figwheel-ws"
+  :jsload-callback fighweel-reload)
 (run)
