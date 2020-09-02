@@ -14,9 +14,11 @@
                 :response-format :json
                 :keywords?       true})
           (POST "/login"
-               {:body {:user "admin"
-                       :body true
-                       :password  "secret"}
+               {:params          {:user     "admin"
+                                  :token    "test"
+                                  :body     true
+                                  :password "secret"}
+                :format          :json
                 :handler         (fn [req]
                                    (println "handler" (str req)))
                 :error-handler   (fn [req]
@@ -26,3 +28,7 @@
 
 (defroute "/about" []
           (println "/about"))
+
+(defroute "/login" []
+          (rf/dispatch [:routes/set-page :login])
+          (println "/login"))

@@ -9,3 +9,12 @@
                  (fn [{:keys [db]} [_ data]] ; _ - event name
                    {:db (assoc-in db [:launches] data)}))
 
+(rf/reg-event-fx :routes/set-page
+                 (fn [{:keys [db]} [_ data]]
+                   {:db (assoc-in db [:page :current] data)}))
+
+(rf/reg-sub :routes/get-page
+            (fn [db _]
+              (-> db
+                  :page
+                  :current)))

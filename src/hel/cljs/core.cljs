@@ -5,7 +5,7 @@
             [hel.cljs.routes.routes]
             [hel.cljs.re-frame.root]
             [re-frame.core :as rf]
-           ; [re-frisk.core :as re-frisk] ; re frisk is dev dependency it's not getting compiled in production
+           [re-frisk.core :as re-frisk] ; re frisk is dev dependency it's not getting compiled in production
             [accountant.core :as accountant]
             [hel.cljs.app :refer [app]]
             [figwheel.client :as figwheel :include-macros true]
@@ -16,7 +16,7 @@
 
 (defn ^:export run []
   (println "APP INIT!")
-  ; (re-frisk/enable) ; re frisk is dev dependency it's not getting compiled in production
+  (re-frisk/enable) ; re frisk is dev dependency it's not getting compiled in production
   (rf/dispatch-sync [:config/init])
   (accountant/configure-navigation!
     {:nav-handler       (fn [path]

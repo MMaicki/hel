@@ -23,5 +23,7 @@
            [:a {:href "/about"}
             "About"]
            [:a {:href "/"}
-            "Home"]]]]))))
+            "Home"]
+           [:a {:href "/login"}
+            "Login"]]]]))))
 

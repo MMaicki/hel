@@ -41,7 +41,7 @@
   (let [username (:username req)
         password (:password req)
         body     (:body req)]
-    (println "BODY" body)
+    (println body "\n" req)
     (response {:message "LOGIN"
                :body    (str body)})))
 
@@ -54,6 +54,7 @@
                           :surname "Maicki"})))
 
            (POST "/login" req (login-authenticate req))
+           (GET "/login" req (root-render req))
 
            #_(GET "/public/js/compiled/app.js" req
              (file-response "app.js" {:root "/public/js/compiled/"}))

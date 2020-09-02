@@ -2,7 +2,8 @@
   (:require [hel.cljs.client.layout :refer [layout]]
             [ajax.core :refer [GET POST]]
             [re-frame.core :as rf]
-            [hel.cljs.client.components.header :refer [header]]))
+            [hel.cljs.client.components.header :refer [header]]
+            [hel.cljs.client.components.login :refer [login]]))
 
 (defn app []
   (let [external-launches (GET "https://api.spacexdata.com/v3/launches"
@@ -12,19 +13,17 @@
                                                    (println "Error getting SpaceX API" (str req)))
                                 :response-format :json
                                 :keywords?       true})
-        rf-launches       (rf/subscribe [:external/launches])]
+        rf-launches       (rf/subscribe [:external/launches])
+        rf-page           (rf/subscribe [:routes/get-page])]
     (fn []
-      (let [launches @rf-launches]
+      (let [launches @rf-launches
+            page @rf-page]
         [layout
          [header {:key :header}]
          [:div {:id  :container
                 :key :container}
           [:h2 {} "Container Div"]
-          [:div {}
-           (if launches
-             (map (fn [launch] [:div {:key (:mission_name launch)}
-                                (:mission_name launch)]) launches)
-             "LOADING")]]
-
+          (when (= page :login)
+            [login])]
          [:footer {:key :footer}
           [:div {} "Footer"]]]))))
