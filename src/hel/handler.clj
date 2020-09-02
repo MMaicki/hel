@@ -37,18 +37,13 @@
                :src  "/templates/test.js"}]]))
 
 (defn login-authenticate
-  "Check request username and password against authdata
-  username and passwords.
-  On successful authentication, set appropriate user
-  into the session and redirect to the value of
-  (:next (:query-params request)). On failed
-  authentication, renders the login page."
   [req]
   (let [username (:username req)
-        password (:password req)]
-    (println "SERVER" (:body req))
+        password (:password req)
+        body     (:body req)]
+    (println "BODY" body)
     (response {:message "LOGIN"
-               :req (str req)})))
+               :body    (str body)})))
 
 (defroutes app-routes
            (GET "/" req (root-render req))
@@ -58,8 +53,7 @@
                (response {:name    "Marcin"
                           :surname "Maicki"})))
 
-           (wrap-json-body
-             (POST "/login" req (login-authenticate req)))
+           (POST "/login" req (login-authenticate req))
 
            #_(GET "/public/js/compiled/app.js" req
              (file-response "app.js" {:root "/public/js/compiled/"}))
