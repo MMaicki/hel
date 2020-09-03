@@ -4,32 +4,10 @@
             [re-frame.core :as rf]))
 
 (defroute "/" []
-          (rf/dispatch [:routes/set-page :home])
-          #_(GET "/hello"
-               {:params          {:email "test@test.com"
-                                  :user  "Marcin"}
-                :handler         (fn [req]
-                                   (rf/dispatch [:routes/home req]))
-                :error-handler   (fn [req]
-                                   (println "Error!" (str req)))
-                :response-format :json
-                :keywords?       true})
-          #_(POST "/login"
-               {:params          {:user     "admin"
-                                  :token    "test"
-                                  :body     true
-                                  :password "secret"}
-                :format          :json
-                :handler         (fn [req]
-                                   (println "handler" (str req)))
-                :error-handler   (fn [req]
-                                   (println "error" (str req)))
-                :response-format :json
-                :keywords?       true}))
+          (rf/dispatch [:routes/set-page :/]))
 
 (defroute "/about" []
-          (println "/about"))
+          (rf/dispatch [:routes/set-page :about]))
 
 (defroute "/login" []
-          (rf/dispatch [:routes/set-page :login])
-          (println "/login"))
+          (rf/dispatch [:routes/set-page :login]))

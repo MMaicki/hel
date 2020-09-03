@@ -38,12 +38,26 @@
 
 (defn login-authenticate
   [req]
-  (let [username (:username req)
-        password (:password req)
-        body     (:body req)]
-    (println body "\n" req)
-    (response {:message "LOGIN"
-               :body    (str body)})))
+  (let [body     (:body req)
+        username (:user body)
+        password (:password body)
+        user     (jdbc/query pg-db (str "select * from users where username='" username "' AND password='" password "';"))]
+    (response {:message   "LOGIN"
+               :body      body
+               :user      user
+               :query-str (str "select * from users where username='" username "' AND password='" password "';")})))
+
+(defn register [req]
+  (let [body         (:body req)
+        username     (:user body)
+        password     (:password body)
+        user         (jdbc/query pg-db (str "select * from users where username='" username "';"))
+        user-exists? (seq user)]
+    (when-not user-exists?
+      (jdbc/insert! pg-db :users {:id (str username password) :username username :password password :email (str username "@mail.com") :admin false}))
+    (response {:message   "LOGIN"
+               :body      body
+               :user      user})))
 
 (defroutes app-routes
            (GET "/" req (root-render req))
@@ -54,6 +68,7 @@
                           :surname "Maicki"})))
 
            (POST "/login" req (login-authenticate req))
+           (POST "/register" req (register req))
            (GET "/login" req (root-render req))
 
            #_(GET "/public/js/compiled/app.js" req

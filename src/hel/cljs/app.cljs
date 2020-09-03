@@ -3,7 +3,8 @@
             [ajax.core :refer [GET POST]]
             [re-frame.core :as rf]
             [hel.cljs.client.components.header :refer [header]]
-            [hel.cljs.client.components.login :refer [login]]))
+            [hel.cljs.client.components.login :refer [login]]
+            [hel.cljs.client.components.register :refer [register]]))
 
 (defn app []
   (let [external-launches (GET "https://api.spacexdata.com/v3/launches"
@@ -22,8 +23,12 @@
         [layout
          [header {:key :header}]
          [:div {:id  :container
-                :key :container}
+                :key :container
+                :style {:max-width "420px"}}
           (when (= page :login)
-            [login])]
+            [:<>
+             [login]
+             [:div {:style {:height "100px"}}]
+             [register]])]
          [:footer {:key :footer}
           [:div {} "Footer"]]]))))
