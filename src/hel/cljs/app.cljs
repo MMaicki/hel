@@ -2,6 +2,7 @@
   (:require [hel.cljs.client.layout :refer [layout]]
             [ajax.core :refer [GET POST]]
             [re-frame.core :as rf]
+            [material-ui :as mui]
             [hel.cljs.client.components.header :refer [header]]
             [hel.cljs.client.components.login :refer [login]]
             [hel.cljs.client.components.register :refer [register]]))
@@ -18,17 +19,25 @@
         rf-page           (rf/subscribe [:routes/get-page])]
     (fn []
       (let [launches @rf-launches
-            page @rf-page]
-        (println "PAGE" page)
+            page     @rf-page]
         [layout
          [header {:key :header}]
-         [:div {:id  :container
-                :key :container
-                :style {:max-width "420px"}}
-          (when (= page :login)
-            [:<>
-             [login]
-             [:div {:style {:height "100px"}}]
-             [register]])]
+         [:> mui/Container {:max-width false
+                            :style {:margin-top "100px"}}
+          [:> mui/Grid {:container   true
+                        :justify     :center
+                        :align-items :center}
+           (when (= page :login)
+             [:> mui/Grid {:container true
+                           :direction :column
+                           :item      true
+                           :spacing   4
+                           :xs        12
+                           :sm        10
+                           :md        6}
+              [:> mui/Grid {:item true}
+               [login]]
+              [:> mui/Grid {:item true}
+               [register]]])]]
          [:footer {:key :footer}
           [:div {} "Footer"]]]))))

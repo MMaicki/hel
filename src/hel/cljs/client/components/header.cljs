@@ -17,13 +17,16 @@
            [:> mui/Menu {:open      is-open?
                          :anchor-el ref}
             [:> mui/MenuItem {:on-click on-close} "Home"]])
-         [:nav {}
-          [:div {}
+         [:> mui/AppBar {}
+          [:> mui/Toolbar {}
            [:> mui/Button {:on-click on-close} "Open Menu"]
            [:a {:href "/about"}
-            "About"]
+            [:> mui/Button {:variant :contained}
+             "About"]]
            [:a {:href "/"}
-            "Home"]
+            [:> mui/Button {:variant :contained}
+             "Home"]]
            [:a {:href "/login"}
-            "Login"]]]]))))
+            [:> mui/Button {:variant :contained}
+             "Login"]]]]]))))
 
