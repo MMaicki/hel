@@ -4,6 +4,7 @@
             [re-frame.core :as rf]))
 
 (defroute "/" []
+          (rf/dispatch [:routes/set-page :home])
           #_(GET "/hello"
                {:params          {:email "test@test.com"
                                   :user  "Marcin"}
@@ -13,7 +14,7 @@
                                    (println "Error!" (str req)))
                 :response-format :json
                 :keywords?       true})
-          (POST "/login"
+          #_(POST "/login"
                {:params          {:user     "admin"
                                   :token    "test"
                                   :body     true

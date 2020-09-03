@@ -18,11 +18,11 @@
     (fn []
       (let [launches @rf-launches
             page @rf-page]
+        (println "PAGE" page)
         [layout
          [header {:key :header}]
          [:div {:id  :container
                 :key :container}
-          [:h2 {} "Container Div"]
           (when (= page :login)
             [login])]
          [:footer {:key :footer}
