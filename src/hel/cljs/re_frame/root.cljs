@@ -6,9 +6,7 @@
 
 (rf/reg-event-fx :config/init (fn [{:keys [db event] :as cofx} event-name]
                                 (let [path (.. js/window -location -pathname)]
-                                  {:db {:page {:current (keyword (if (or
-                                                                       (= path "/")
-                                                                       path)
+                                  {:db {:page {:current (keyword (if (= path "/")
                                                                    path
                                                                    (str/replace path #"/" "")))}
                                         :init {:date      (.now js/Date)
