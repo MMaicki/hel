@@ -1,6 +1,7 @@
 (ns hel.cljs.client.components.login
   (:require [material-ui :as mui]
             [ajax.core :refer [POST]]
+            ["@material-ui/icons" :as icons]
             [reagent.core :as r]))
 
 (defn login []
@@ -22,7 +23,10 @@
             [:> mui/Grid {:item true}
              [:> mui/TextField {:required  true
                                 :value     login
+                                :InputProps {:end-adornment (r/as-element [:> mui/Button {}
+                                                                           [:> icons/Add {}]])}
                                 :on-change #(reset! r-login (.. % -target -value))
+                                :placeholder "Sample"
                                 :label     "User"
                                 :variant   :outlined}]]
             [:> mui/Grid {:item true}

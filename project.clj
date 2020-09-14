@@ -19,6 +19,7 @@
                  [cljs-ajax "0.8.1"]
                  [cljsjs/material-ui "4.10.2-0"]
                  [lein-figwheel "0.5.20"]
+                 [cljsjs/material-ui-icons "4.4.1-0"]
                  [ring/ring-json "0.5.0"]
                  [buddy/buddy-auth "2.2.0"]
                  [ring/ring-defaults "0.3.2"]

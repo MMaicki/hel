@@ -27,6 +27,7 @@
     <orderEntry type="library" name="Leiningen: clj-commons/secretary:1.2.4" level="project" />
     <orderEntry type="library" name="Leiningen: clj-stacktrace:0.2.8" level="project" />
     <orderEntry type="library" name="Leiningen: cljs-ajax:0.8.1" level="project" />
+    <orderEntry type="library" name="Leiningen: cljsjs/material-ui-icons:4.4.1-0" level="project" />
     <orderEntry type="library" name="Leiningen: cljsjs/material-ui:4.10.2-0" level="project" />
     <orderEntry type="library" name="Leiningen: cljsjs/react-dom-server:16.13.0-0" level="project" />
     <orderEntry type="library" name="Leiningen: cljsjs/react-dom:16.13.0-0" level="project" />

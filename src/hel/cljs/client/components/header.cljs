@@ -11,15 +11,16 @@
       (let [is-open? @r-is-open?
             ref      @!ref
             on-close #(reset! r-is-open? (not is-open?))]
-        [:header {:ref (fn [el]
-                         (reset! !ref el))}
+        [:<>
          (when ref
            [:> mui/Menu {:open      is-open?
                          :anchor-el ref}
             [:> mui/MenuItem {:on-click on-close} "Home"]])
          [:> mui/AppBar {}
           [:> mui/Toolbar {}
-           [:> mui/Button {:on-click on-close} "Open Menu"]
+           [:> mui/Button {:on-click on-close
+                           :ref      (fn [el]
+                                       (reset! !ref el))} "Open Menu"]
            [:a {:href "/about"}
             [:> mui/Button {:variant :contained}
              "About"]]
